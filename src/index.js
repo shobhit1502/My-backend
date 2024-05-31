@@ -33,7 +33,6 @@ connectDB()
 
 
 
-
 //try catch async await
 
 // function connectDB(){

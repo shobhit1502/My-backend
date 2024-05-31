@@ -20,7 +20,7 @@ const connectDB = async () => {
     console.log(`Connecting to MongoDB with URI: ${connectionString}`);  // Debug statement
 
     try {
-        const connectionInstance = await mongoose.connect(connectionString );
+        const connectionInstance = await mongoose.connect(connectionString);
         console.log(`MONGODB CONNECTED !!! DB HOST: ${connectionInstance.connection.host}`);
     } 
     
