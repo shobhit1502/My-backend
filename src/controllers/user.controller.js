@@ -3,6 +3,7 @@ import {ApiError} from "../utils/ApiError.js"
 import {User} from "../models/user.model.js"
 import {uploadOnCloudinary} from "../utils/cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js";
+import jwt from "jsonwebtoken"
 
 
 const generateAccessAndRefereshToken = async (userId)=>{
@@ -220,6 +221,56 @@ const logoutUser = asyncHandler(async (req,res) =>{
 
 
 })
+
+const refreshAccessToken = asyncHandler(async(req,res)=>{
+    const incomeRefreshToken = req.cookies.refreshToken || req.body.refreshToken
+
+    if(!incomeRefreshToken){
+        throw new ApiError(401,"unauthorized request")
+    }
+
+    try {
+        const decodedToken = jwt.verify(
+            incomeRefreshToken,
+            process.env.REFRESH_TOKEN_SECRET
+        )
+        const user = await User.findById(decodedToken?._id)
+    
+        if(!user){
+            throw new ApiError(401,"invalid refresh token")
+        }
+    
+        if(incomeRefreshToken != user?.refreshToken){
+            throw new ApiError(401,"Refresh token is expired or used")
+        }
+    
+        const options = {
+            httpOnly: true,
+            secure: true
+         }
+         
+         const {accessToken,newrefreshToken} = await generateAccessAndRefereshToken(user._id)
+    
+         return res
+         .status(200)
+         .cookie("accessToken",accessToken,options)
+         .cookie("refreshToken",newrefreshToken,options)
+         .json(
+            new ApiResponse(200,
+                {
+                    accessToken,refreshToken : newrefreshToken
+                },
+                "refresh hogya token"
+            )
+         )
+    } catch (error) {
+        throw new ApiError(401,error?.message || "Invalid refresh Token")
+        
+    }
+
+    
+
+})
  
 // const loginUser = (req, res) => {
 //     console.log('Login - Request Headers:', req.headers); // Log request headers
@@ -238,7 +289,7 @@ const logoutUser = asyncHandler(async (req,res) =>{
 
 // export {registerUser}
 // export {loginUser}
-export {registerUser,loginUser,logoutUser}
+export {registerUser,loginUser,logoutUser,refreshAccessToken}
 
 
 //========================
