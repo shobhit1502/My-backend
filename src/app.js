@@ -54,4 +54,10 @@ app.use("/api/v1/subscriptions", subscriptionRouter)
 import playlistRouter from "./routes/playlist.routes.js";
 app.use("/api/v1/playlist", playlistRouter);
 
+import healthcheckRouter from "./routes/healthcheck.routes.js";
+app.use("/api/v1/healthcheck", healthcheckRouter);
+
+import dashboardRouter from "./routes/dashboard.routes.js";
+app.use("/api/v1/dashboard", dashboardRouter);
+
 export {app}
