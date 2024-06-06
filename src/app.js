@@ -45,5 +45,13 @@ app.use("/api/v1/likes", likeRouter);
 import tweetRouter from "./routes/tweet.routes.js"
 app.use("/api/v1/tweet", tweetRouter)
 
+import commentRouter from "./routes/comment.routes.js"
+app.use("/api/v1/comments", commentRouter)
+
+import subscriptionRouter from "./routes/subscription.routes.js"
+app.use("/api/v1/subscriptions", subscriptionRouter)
+
+import playlistRouter from "./routes/playlist.routes.js";
+app.use("/api/v1/playlist", playlistRouter);
 
 export {app}

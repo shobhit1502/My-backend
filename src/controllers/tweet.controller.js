@@ -64,7 +64,7 @@ const getUserTweets = asyncHandler(async (req, res) => {
     pipeline.push(
         {
             $match:{
-                owner: new mongoose.Types.ObjectId(userId),
+               owner: new mongoose.Types.ObjectId(userId),
             },
         },
         {
