@@ -68,6 +68,7 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/Hruthik-28/youtube-twitter.git
+```
 
 This project is designed to provide a comprehensive platform for video sharing and social interaction, leveraging modern web technologies to ensure a scalable and maintainable system. Explore the documentation for detailed information on each feature and to get started with integrating these functionalities into your application.
 
