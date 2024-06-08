@@ -64,13 +64,28 @@ Welcome to the YouTube + Twitter backend project! This innovative system combine
 
 ## Installation and Setup
 
-Clone the repository:
+1. Clone the repository:
 
 ```bash
-git clone https://github.com/Hruthik-28/youtube-twitter.git
+git clone https://github.com/shobhit1502/My-backend.git
 ```
 
-This project is designed to provide a comprehensive platform for video sharing and social interaction, leveraging modern web technologies to ensure a scalable and maintainable system. Explore the documentation for detailed information on each feature and to get started with integrating these functionalities into your application.
+2. Install dependencies:
+```bash
+cd youtube-twitter
+npm install
+```
+
+3. Set up environment variables: Create a .env in root of project and fill in the required values in the .env file using your own creadentials
+
+4. Start the server:
+```bash
+npm run dev
+```
+
+
+
+This project is designed to provide a comprehensive platform for video uploading and social interaction, leveraging modern web technologies to ensure a scalable and maintainable system. Explore the documentation for detailed information on each feature and to get started with integrating these functionalities into your application.
 
 
 
