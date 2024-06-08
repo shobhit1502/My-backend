@@ -72,7 +72,7 @@ git clone https://github.com/shobhit1502/My-backend.git
 
 2. Install dependencies:
 ```bash
-cd youtube-twitter
+cd My-backend
 npm install
 ```
 
