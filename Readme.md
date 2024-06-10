@@ -9,8 +9,9 @@ This is backend project in javascript
 Welcome to the YouTube + Twitter backend project! This innovative system combines the core functionalities of YouTube with the engaging tweet features of Twitter, creating a robust platform for content viewing and posting tweets. Below, you'll find an overview of the features and technologies used in this project.
 
 ## Important Links
-- **API Documentation**: [Click here](#)
-- **Model**: [Click here](https://app.eraser.io/workspace/YtPqZ1VogxGy1jzIDkzj)
+- **Postman API Documentation**: [Click here](https://documenter.getpostman.com/view/29483498/2sA3XLGQSC)
+- **Model/Schema for YouTube**: [Click here](https://app.eraser.io/workspace/YtPqZ1VogxGy1jzIDkzj)
+
 
 ## Features
 

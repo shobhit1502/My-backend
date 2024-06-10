@@ -41,14 +41,76 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
 })
 
 const toggleCommentLike = asyncHandler(async (req, res) => {
-    const {commentId} = req.params
+    
     //TODO: toggle like on comment
+    const {commentId} = req.params
 
+    //check for valid video id
+    if (!isValidObjectId(commentId)) {
+        throw new ApiError(400, "Invalid commentId");
+    }
+
+    //check if video is already liked or not
+    const likedAlready = await Like.findOne({
+        comment: commentId,
+        likedBy: req.user?._id,
+    });
+    
+    //if liked delete that like
+    if (likedAlready) {
+        await Like.findByIdAndDelete(likedAlready?._id);
+
+        return res
+        .status(200)
+        .json(new ApiResponse(200, { isLiked: false },"comment not liked by you succesfully"));    
+    }
+    
+    //if not like create that like
+    await Like.create({
+        comment : commentId,
+        likedBy: req.user?._id,
+    });
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, { isLiked: true },"comment liked by you succesfully"));
 })
 
 const toggleTweetLike = asyncHandler(async (req, res) => {
-    const {tweetId} = req.params
+  
+
     //TODO: toggle like on tweet
+
+    const { tweetId } = req.params;
+
+    if (!isValidObjectId(tweetId)) {
+        throw new ApiError(400, "Invalid tweetId");
+    }
+
+
+    const likedAlready = await Like.findOne({
+        tweet: tweetId,
+        likedBy: req.user?._id,
+    });
+
+    //console.log(likedAlready);
+
+    if (likedAlready) {
+        await Like.findByIdAndDelete(likedAlready?._id);
+
+        return res
+            .status(200)
+            .json(new ApiResponse(200, { tweetId, isLiked: false }));
+    }
+
+    await Like.create({
+        tweet: tweetId,
+        likedBy: req.user?._id,
+    });
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, { isLiked: true }));
 }
 )
 

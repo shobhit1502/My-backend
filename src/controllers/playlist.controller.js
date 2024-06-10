@@ -41,11 +41,6 @@ const createPlaylist = asyncHandler(async (req, res) => {
 
 const getUserPlaylists = asyncHandler(async (req, res) => {
     //TODO: get user playlists
-
-    //step1 take userId from req.params
-    //step2 validate that userId
-    //step3 
-
     const {userId} = req.params
     if(!isValidObjectId(userId)){
         throw new ApiError(400,"userId not valid!!")
@@ -224,6 +219,7 @@ const addVideoToPlaylist = asyncHandler(async (req, res) => {
     //return response
     
     const {playlistId,videoId} = req.params
+
     if(!isValidObjectId(playlistId)){
         throw new ApiError(400,"Playlst Id not valid")
     }
@@ -341,6 +337,8 @@ const deletePlaylist = asyncHandler(async (req, res) => {
     if(!isValidObjectId(playlistId)){
         throw new ApiError(400, "Invalid PlaylistId")
     }
+
+
 
     const playlist = await Playlist.findById(playlistId)
 

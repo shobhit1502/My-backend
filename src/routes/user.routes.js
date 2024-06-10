@@ -41,7 +41,9 @@ router.route("/register").post(
   
 //   router.route("/getCurrentUser").post(getCurrentUser)
 router.route("/getCurrentUser").post(verifyJWT, getCurrentUser);
-router.route("/updateAccountDetails").post(verifyJWT, updateAccountDetails);
+
+
+router.route("/updateAccountDetails").post(verifyJWT,upload.none(), updateAccountDetails);
 
 router.route("/updateAvatar").patch(verifyJWT, upload.single('avatar'), updateUserAvatar);
 router.route("/updateCoverImage").patch(verifyJWT, upload.single('coverImage'), updateUserCoverImage);

@@ -61,3 +61,9 @@ import dashboardRouter from "./routes/dashboard.routes.js";
 app.use("/api/v1/dashboard", dashboardRouter);
 
 export {app}
+
+
+// Sets up CORS to allow requests from the specified origin.
+// Configures body parsers for JSON and URL-encoded data.
+// Serves static files from the public directory.
+// Parses cookies in incoming requests
